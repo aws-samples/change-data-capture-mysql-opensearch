@@ -1,0 +1,11 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "opensearch-writer"
+s3_prefix = "opensearch-writer"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+disable_rollback = false
+image_repositories = []
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1mpn4eb1nk1t6"

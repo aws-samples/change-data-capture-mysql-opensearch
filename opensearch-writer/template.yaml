@@ -1,0 +1,48 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  opensearch-writer
+
+  Sample SAM Template for opensearch-writer
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  OpenSearchWriter:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: opensearch_writer/
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.9
+      Architectures:
+        - x86_64        
+      Policies:
+      - Statement:
+        - Sid: VisualEditor0
+          Effect: Allow
+          Action:
+          - "secretsmanager:GetRandomPassword"
+          - "secretsmanager:GetResourcePolicy"
+          - "secretsmanager:GetSecretValue"
+          - "secretsmanager:DescribeSecret"
+          - "secretsmanager:ListSecretVersionIds"
+          - "secretsmanager:ListSecrets"
+          Resource: '*'
+
+      Events:
+        KinesisEvents:
+          Type: Kinesis # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Stream: arn:aws:kinesis:us-east-1:<account_id>:stream/mysql_data
+            StartingPosition: LATEST
+            BatchSize: 1
+            MaximumBatchingWindowInSeconds: 10
+            Enabled: true
+            ParallelizationFactor: 1
+            MaximumRetryAttempts: 1
+            BisectBatchOnFunctionError: true
+            MaximumRecordAgeInSeconds: 60
+            TumblingWindowInSeconds: 0
