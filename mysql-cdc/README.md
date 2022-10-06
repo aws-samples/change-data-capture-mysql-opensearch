@@ -44,12 +44,6 @@ INSERT INTO test5 (data,data2) VALUES ("Hello", "World");
 XA END 'xatest';
 XA PREPARE 'xatest';
 XA COMMIT 'xatest';
-
-
 ```
-## Test the AWS OpenSearch service
 
-```
- curl -XGET -u 'root:Aa123456!' 'https://vpc-opensearchdomain-testurl.us-east-1.es.amazonaws.com/mysql_data/_doc/51' |jq
-```
 

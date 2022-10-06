@@ -11,7 +11,8 @@ This repository contain 2 application
 
 ###  mysql-cdc  
 sample script that read data from MySQL binary logs and append the SQL data into Amazon Kinesis Data Stream
-
+### opensearch-writer
+This library contains the package opensearch_writer and the config file and template file for deploring this package into AWS Lambda via [SAM- AWS Serverless Application Model](https://aws.amazon.com/serverless/sam/)
 
 
 ## Security
