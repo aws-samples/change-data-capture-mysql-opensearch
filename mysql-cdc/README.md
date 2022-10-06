@@ -50,6 +50,6 @@ XA COMMIT 'xatest';
 ## Test the AWS OpenSearch service
 
 ```
- curl -XGET -u 'root:Aa123456!' 'https://vpc-opensearchdomain-c6hrzwoccjmjzs6dmfgexeyjmq.us-east-1.es.amazonaws.com/mysql_data/_doc/51' |jq
+ curl -XGET -u 'root:Aa123456!' 'https://vpc-opensearchdomain-testurl.us-east-1.es.amazonaws.com/mysql_data/_doc/51' |jq
 ```
 

@@ -1,11 +1,18 @@
-## My Project
+## Enable change data capture on RDS for MySQL applications that are using XA transactions
 
-TODO: Fill this README out!
+This repository describe a solution to safely replicate data with XA transactions from MySQL applications to Amazon OpenSearch Service using Amazon Kinesis Data Streams and AWS Lambda.
 
-Be sure to:
+![General description of the solution](./images/General_Desc.png)
 
-* Change the title in this README
-* Edit your repository description on GitHub
+
+This repository contain 2 application 
+1. mysql-cdc 
+2. opensearch-writer 
+
+###  mysql-cdc  
+sample script that read data from MySQL binary logs and append the SQL data into Amazon Kinesis Data Stream
+
+
 
 ## Security
 
