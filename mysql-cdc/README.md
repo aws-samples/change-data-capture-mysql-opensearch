@@ -16,10 +16,10 @@ Amazon Web Services, Inc. or Amazon Web Services EMEA SARL or both.
 pip3 install -r requirements.txt
 ```
 ### Creating replication user for dcd 
-```
+```sql
 CREATE USER 'repl'@'%' IDENTIFIED  BY 'slavepass';
 GRANT REPLICATION SLAVE,REPLICATION CLIENT ON *.* TO 'repl'@'%';
-GRANT REPLICATION SLAVE, REPLICATION CLIENT, SELECT ON *.* TO 'repl'@'%'
+GRANT REPLICATION SLAVE, REPLICATION CLIENT, SELECT ON *.* TO 'repl'@'%';
 ```
 
 ### MySQL config 
@@ -37,13 +37,16 @@ binlog-format    = row #Very important if you want to receive write, update and 
 
 ## Test the replication 
 
-```
+```sql
+CREATE DATABASE test;
 use test;
+CREATE TABLE IF NOT EXISTS test5 (id int NOT NULL AUTO_INCREMENT, data VARCHAR(255), data2 VARCHAR(255), PRIMARY KEY(id));
 XA START 'xatest';
 INSERT INTO test5 (data,data2) VALUES ("Hello", "World");
 XA END 'xatest';
 XA PREPARE 'xatest';
 XA COMMIT 'xatest';
+-- drop table test5;
 ```
 
 
